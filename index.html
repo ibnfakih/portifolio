@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sharif Fakihi Mussa – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --green: #1db954;
+    --green-dark: #0f7a35;
+    --green-light: #a8f0c0;
+    --accent: #c8ff00;
+    --muted: #888;
+    --card-bg: #111;
+    --border: #222;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ---- NOISE OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+  .hero-bg-circle.c1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(29,185,84,0.15), transparent 70%);
+    top: -150px; right: -100px;
+  }
+  .hero-bg-circle.c2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,255,0,0.08), transparent 70%);
+    bottom: 50px; left: -100px;
+  }
+
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green-dark);
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-name span { color: var(--green); }
+
+  .hero-title {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-desc {
+    margin-top: 1.5rem;
+    color: #aaa;
+    font-size: 0.95rem;
+    max-width: 440px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; margin-top: 2.5rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  /* Hero Right: stats card */
+  .hero-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(29,185,84,0.1), transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-avatar {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+
+  .hero-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .hero-card p { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 1.5rem;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+  .contact-pills {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;
+  }
+  .contact-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+  }
+  .contact-pill svg { width: 12px; height: 12px; fill: var(--green); }
+
+  /* ---- SECTION COMMONS ---- */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .divider {
+    width: 40px; height: 3px;
+    background: var(--green);
+    border-radius: 2px;
+    margin: 1.2rem 0 2.5rem;
+  }
+
+  /* ---- SKILLS ---- */
+  #skills { background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--green); transform: translateY(-3px); }
+
+  .skill-icon {
+    width: 40px; height: 40px;
+    background: rgba(29,185,84,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+
+  .skill-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-size: 0.72rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  /* ---- EXPERIENCE ---- */
+  .timeline { margin-top: 2.5rem; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 11px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+
+  .timeline-item {
+    padding-left: 3rem;
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: 0; top: 6px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    background: var(--black);
+    z-index: 1;
+  }
+
+  .timeline-date {
+    font-size: 0.75rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .timeline-org {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .timeline-list { list-style: none; }
+  .timeline-list li {
+    color: #aaa;
+    font-size: 0.88rem;
+    padding: 0.25rem 0 0.25rem 1rem;
+    position: relative;
+  }
+  .timeline-list li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--green);
+    font-size: 0.8rem;
+  }
+
+  /* ---- PORTFOLIO ---- */
+  #portfolio { background: #0d0d0d; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .portfolio-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .work-card:hover { border-color: var(--green); transform: translateY(-4px); }
+
+  .work-img {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    background: #1a1a1a;
+  }
+
+  .work-img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .work-img-placeholder span { font-size: 2rem; }
+
+  .work-info { padding: 1.2rem; }
+  .work-cat {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.3rem;
+  }
+  .work-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+  .work-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
+
+  /* ---- LIGHTBOX ---- */
+  #lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(16px);
+    align-items: center; justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    animation: lbFadeIn 0.25s ease;
+  }
+  #lightbox.open { display: flex; }
+
+  @keyframes lbFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .lb-close {
+    position: fixed; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+
+  .lb-img-wrap {
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex; align-items: center; justify-content: center;
+    animation: lbSlideUp 0.3s ease;
+  }
+
+  @keyframes lbSlideUp {
+    from { opacity: 0; transform: scale(0.94) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  #lb-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  }
+
+  .lb-meta {
+    margin-top: 1.2rem;
+    text-align: center;
+    animation: lbSlideUp 0.35s 0.05s ease both;
+  }
+
+  .lb-meta-cat {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+
+  .lb-meta-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .lb-meta-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    max-width: 500px;
+  }
+
+  /* Nav arrows */
+  .lb-arrow {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+  .lb-arrow:hover { background: rgba(255,255,255,0.14); }
+  .lb-arrow.prev { left: 1.5rem; }
+  .lb-arrow.next { right: 1.5rem; }
+  .lb-arrow:disabled { opacity: 0.2; cursor: default; }
+
+  /* ---- EDUCATION ---- */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+
+  .edu-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .edu-card .edu-year {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.5rem;
+  }
+  .edu-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+  .edu-card p { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+
+  .certs-list { margin-top: 2rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: var(--green); }
+  .cert-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
+  }
+  .cert-item span { font-size: 0.88rem; color: #ccc; }
+
+  /* ---- CONTACT ---- */
+  #contact { background: #0a0a0a; border-top: 1px solid var(--border); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-top: 2.5rem;
+  }
+
+  .contact-info p { color: #aaa; font-size: 0.9rem; margin-bottom: 2rem; }
+
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(29,185,84,0.1);
+    border: 1px solid var(--green-dark);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item-text span { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-item-text strong { font-size: 0.9rem; font-weight: 500; }
+
+  .lang-chips { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .lang-chip {
+    background: rgba(29,185,84,0.08);
+    border: 1px solid var(--green-dark);
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+  .lang-chip strong { color: var(--green); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  footer span { color: var(--green); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SF.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" id="about">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Available for Opportunities</div>
+      <h1 class="hero-name">Sharif<br><span>Fakihi</span><br>Mussa</h1>
+      <p class="hero-title">IT Professional &amp; Graphics Designer · Dar es Salaam, Tanzania</p>
+      <p class="hero-desc">Detail-oriented tech specialist with hands-on experience in IT support, networking, and digital branding. Building modern digital solutions for businesses.</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-primary">View My Work ↓</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-avatar">SF</div>
+      <h3>Sharif Fakihi Mussa</h3>
+      <p>IT & Design Professional</p>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Internships</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">B2</div>
+          <div class="stat-label">English Level</div>
+        </div>
+      </div>
+
+      <div class="contact-pills">
+        <div class="contact-pill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          +255 612 247 990
+        </div>
+        <div class="contact-pill">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e99a81889b8f8f88828081a98e84888085c78a8684">[email&#160;protected]</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">What I Do</p>
+    <h2 class="section-title reveal">Core Skills &amp;<br>Competencies</h2>
+    <div class="divider reveal"></div>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">🖥️</div>
+        <h4>IT &amp; Technical Support</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Help Desk</span>
+          <span class="skill-tag">Hardware Config</span>
+          <span class="skill-tag">Software Troubleshooting</span>
+          <span class="skill-tag">Computer Maintenance</span>
+          <span class="skill-tag">System Config</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔌</div>
+        <h4>Networking</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Network Troubleshooting</span>
+          <span class="skill-tag">Router Configuration</span>
+          <span class="skill-tag">Switch Config</span>
+          <span class="skill-tag">Firewall Setup</span>
+          <span class="skill-tag">CCNA Trained</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎨</div>
+        <h4>Graphic Design</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Logo Design</span>
+          <span class="skill-tag">Branding</span>
+          <span class="skill-tag">Poster Design</span>
+          <span class="skill-tag">Business Cards</span>
+          <span class="skill-tag">Social Media Graphics</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🛠️</div>
+        <h4>Design Tools</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Adobe Photoshop</span>
+          <span class="skill-tag">Adobe Illustrator</span>
+          <span class="skill-tag">Packaging Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🌐</div>
+        <h4>Web &amp; Digital</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Web Development</span>
+          <span class="skill-tag">Website Maintenance</span>
+          <span class="skill-tag">Basic SEO</span>
+          <span class="skill-tag">Microsoft Office</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">🤝</div>
+        <h4>Soft Skills</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Customer Service</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Team Collaboration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">Career</p>
+    <h2 class="section-title reveal">Professional<br>Experience</h2>
+    <div class="divider reveal"></div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jul 2024 – Nov 2024</div>
+        <div class="timeline-role">IT Intern</div>
+        <div class="timeline-org">National Sports Council (Baraza la Michezo la Taifa) · Dar es Salaam</div>
+        <ul class="timeline-list">
+          <li>Provided technical support for computer systems, software, and hardware</li>
+          <li>Installed and configured routers, switches, firewalls, and servers</li>
+          <li>Assisted users with troubleshooting hardware and software issues</li>
+          <li>Monitored system performance and reported issues to senior IT staff</li>
+          <li>Supported daily IT operations across multiple departments</li>
+          <li>Assisted with software installation and system upgrades</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jul 2023 – Nov 2023</div>
+        <div class="timeline-role">IT Intern</div>
+        <div class="timeline-org">Cashewnut Board of Tanzania · Mtwara</div>
+        <ul class="timeline-list">
+          <li>Provided help desk support to staff on computer and network issues</li>
+          <li>Installed and updated hardware, software, and security systems</li>
+          <li>Configured network settings per organizational requirements</li>
+          <li>Troubleshot desktop and application problems</li>
+          <li>Assisted in maintaining IT infrastructure and systems</li>
+          <li>Identified system requirements to meet user needs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div>
+      <p class="section-label reveal">Showcase</p>
+      <h2 class="section-title reveal">Selected<br>Work</h2>
+      <div class="divider reveal"></div>
+    </div>
+
+    <div class="portfolio-grid" id="portfolio-grid">
+
+      <!-- Pre-loaded work items -->
+      <div class="work-card reveal">
+        <img class="work-img" src="soteit poster.jpg" alt="Soteit Technologies Poster" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Soteit Technologies Poster</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Poster</div>
+          <div class="work-title">Soteit Technologies – Services Poster</div>
+          <div class="work-desc">Full promotional poster showcasing IT services, web development, and IT support offerings for Soteit Technologies.</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-img" src="IMG_5293.JPG.jpeg" alt="Idriss Outfit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Idriss Outfit</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Branding</div>
+          <div class="work-title">Idriss Outfit – Brand Visual</div>
+          <div class="work-desc">Dynamic brand promotional graphic for Idriss Outfit featuring product photography composition and identity design.</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-img" src="IMG_5359.JPG.jpeg" alt="Soteit Technologies Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Soteit Technologies Logo</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Logo Design</div>
+          <div class="work-title">Soteit Technologies – Logo Design</div>
+          <div class="work-desc">Clean, professional logo design combining S&T letterforms with an upward arrow motif symbolizing growth and technology.</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-img" src="atf.jpg" alt="Akisi Ya Thamani Foundation" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Akisi Ya Thamani Foundation</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Branding</div>
+          <div class="work-title">Akisi Ya Thamani Foundation – Logo Design</div>
+          <div class="work-desc">Clean, impactful logo design for Akisi Ya Thamani Foundation, combining a stylized "A" with a heart motif to symbolize care and community support.</div>
+      </div>
+      </div>
+      <div class="work-card reveal">
+        <img class="work-img" src="jk.jpg" alt="Juma Kantamwa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Juma Kantamwa</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Branding</div>
+          <div class="work-title">Juma Kantamwa – Brand Visual</div>
+          <div class="work-desc">Dynamic brand promotional graphic for Juma Kantamwa featuring product photography composition and identity design.</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-img" src="mb.jpg" alt="Muhsin Boss Furniture" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Muhsin Boss Furniture</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Logo Design</div>
+          <div class="work-title">Muhsin Boss Furniture – Brand Visual</div>
+          <div class="work-desc">Dynamic brand promotional graphic for Muhsin Boss Furniture featuring identity design.</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <img class="work-img" src="mg.jpg" alt="Muungano Group" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Muungano Group</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Logo Design</div>
+          <div class="work-title">Muungano Group – Brand Visual</div>
+          <div class="work-desc">--</div>
+        </div>
+      </div>
+      <!--
+      ============================================================
+      ADD NEW WORK BELOW — copy and paste this block for each new project:
+
+      <div class="work-card reveal">
+        <img class="work-img" src="YOUR_IMAGE_PATH_HERE.jpg" alt="Project Name"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="work-img-placeholder" style="display:none"><span>🖼️</span>Project Name</div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design · Logo Design</div>
+          <div class="work-title">Your Project Title</div>
+          <div class="work-desc">Brief description of the project.</div>
+        </div>
+      </div>
+
+      Categories you can use:
+        Graphic Design · Logo Design
+        Graphic Design · Poster
+        Graphic Design · Branding
+        Graphic Design · Social Media
+        Web Development
+        IT Support
+        Other
+      ============================================================
+      -->
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label reveal">Background</p>
+    <h2 class="section-title reveal">Education &amp;<br>Training</h2>
+    <div class="divider reveal"></div>
+
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">Expected Jul 2026</div>
+        <h4>Bachelor of Information Technology</h4>
+        <p>Information and Communication Technology<br>College of Business Education – Tanzania</p>
+      </div>
+      <div class="edu-card reveal" style="border-color: rgba(29,185,84,0.3);">
+        <div class="edu-year">Active Learner</div>
+        <h4>CCNA Training</h4>
+        <p>Dar es Salaam Institute of Technology<br>Enterprise Networking · Security · Automation · Switching & Routing</p>
+      </div>
+    </div>
+
+    <div class="certs-list" style="margin-top:2rem;">
+      <p style="color:var(--muted); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">Professional Certifications</p>
+      <div class="cert-item reveal">
+        <div class="cert-dot"></div>
+        <span>CCNA: Enterprise Networking, Security and Automation – DIT</span>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-dot"></div>
+        <span>CCNA: Switching, Routing and Wireless Essentials – DIT</span>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-dot"></div>
+        <span>Computer Maintenance Certificate – Dar es Salaam Institute of Technology</span>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-dot"></div>
+        <span>Microsoft Office Applications Training (Word, Excel, PowerPoint, Publisher)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Let's Work<br>Together</h2>
+    <div class="divider reveal"></div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>Whether you need IT support, a stunning logo, a website, or someone reliable on your tech team — I'm ready to help. Reach out anytime.</p>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <span>Phone / WhatsApp</span>
+            <strong>+255 612 247 990</strong>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-text">
+            <span>Email</span>
+            <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="01726960736767606a686941666c60686d2f626e6c">[email&#160;protected]</a></strong>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <span>Location</span>
+            <strong>Dar es Salaam, Tanzania</strong>
+          </div>
+        </div>
+
+        <div class="lang-chips">
+          <div class="lang-chip"><strong>Swahili</strong> – Native</div>
+          <div class="lang-chip"><strong>English</strong> – B2</div>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem;">
+          <p style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:0.5rem;">Services I Offer</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-top:1rem;">
+            <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#aaa;"><span style="color:var(--green);font-size:0.8rem;">✦</span>Logo, Poster &amp; Business Card Design</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#aaa;"><span style="color:var(--green);font-size:0.8rem;">✦</span>IT Support &amp; Computer Maintenance</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#aaa;"><span style="color:var(--green);font-size:0.8rem;">✦</span>Network Setup &amp; Configuration</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#aaa;"><span style="color:var(--green);font-size:0.8rem;">✦</span>Website Setup &amp; Maintenance</li>
+            <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#aaa;"><span style="color:var(--green);font-size:0.8rem;">✦</span>Antivirus &amp; Data Recovery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Sharif Fakihi Mussa</span> · IT Professional &amp; Graphic Designer · Dar es Salaam, Tanzania</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-arrow prev" id="lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-arrow next" id="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-img-wrap">
+    <img id="lb-image" src="" alt=""/>
+  </div>
+  <div class="lb-meta">
+    <div class="lb-meta-cat" id="lb-cat"></div>
+    <div class="lb-meta-title" id="lb-title"></div>
+    <div class="lb-meta-desc" id="lb-desc"></div>
+  </div>
+</div>
+
+
+<script>
+// Intersection Observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ---- LIGHTBOX ----
+let lbItems = [];
+let lbIndex = 0;
+
+function buildLbItems() {
+  lbItems = [];
+  document.querySelectorAll('#portfolio-grid .work-card').forEach(card => {
+    const img = card.querySelector('.work-img');
+    const cat = card.querySelector('.work-cat')?.textContent || '';
+    const title = card.querySelector('.work-title')?.textContent || '';
+    const desc = card.querySelector('.work-desc')?.textContent || '';
+    const src = (img && img.style.display !== 'none') ? img.src : '';
+    lbItems.push({ src, cat, title, desc });
+  });
+}
+
+function openLightbox(index) {
+  buildLbItems();
+  lbIndex = index;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderLightbox() {
+  const item = lbItems[lbIndex];
+  const lbImg = document.getElementById('lb-image');
+  if (item.src) {
+    lbImg.src = item.src;
+    lbImg.style.display = 'block';
+  } else {
+    lbImg.style.display = 'none';
+  }
+  document.getElementById('lb-cat').textContent = item.cat;
+  document.getElementById('lb-title').textContent = item.title;
+  document.getElementById('lb-desc').textContent = item.desc;
+  document.getElementById('lb-prev').disabled = lbIndex === 0;
+  document.getElementById('lb-next').disabled = lbIndex === lbItems.length - 1;
+  const wrap = document.querySelector('.lb-img-wrap');
+  wrap.style.animation = 'none'; wrap.offsetHeight; wrap.style.animation = '';
+}
+
+function lbNav(dir) {
+  lbIndex = Math.max(0, Math.min(lbItems.length - 1, lbIndex + dir));
+  renderLightbox();
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// Wire all cards to open lightbox on click
+document.querySelectorAll('#portfolio-grid .work-card').forEach((card, i) => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => openLightbox(i));
+});
+</script>
+</body>
+</html>
